@@ -15,7 +15,7 @@
 		BBAB32A9213EDA0700BC186E /* ToRememberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB32A8213EDA0700BC186E /* ToRememberTableViewController.swift */; };
 		BBAB32AB213EE23300BC186E /* AddToCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB32AA213EE23300BC186E /* AddToCalendarViewController.swift */; };
 		BBC6DA5E213E0C7B006FE216 /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC6DA5D213E0C7B006FE216 /* ToDoTableViewController.swift */; };
-		BBD2D97B2143236F00F59F4E /* RememberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD2D97A2143236F00F59F4E /* RememberData.swift */; };
+		BBD2D97B2143236F00F59F4E /* ToRememberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD2D97A2143236F00F59F4E /* ToRememberData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		BBAB32A8213EDA0700BC186E /* ToRememberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToRememberTableViewController.swift; sourceTree = "<group>"; };
 		BBAB32AA213EE23300BC186E /* AddToCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCalendarViewController.swift; sourceTree = "<group>"; };
 		BBC6DA5D213E0C7B006FE216 /* ToDoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
-		BBD2D97A2143236F00F59F4E /* RememberData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RememberData.swift; sourceTree = "<group>"; };
+		BBD2D97A2143236F00F59F4E /* ToRememberData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToRememberData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 				BBC6DA5D213E0C7B006FE216 /* ToDoTableViewController.swift */,
 				BBAB32A8213EDA0700BC186E /* ToRememberTableViewController.swift */,
 				BBAB32A2213EAFFC00BC186E /* AddToListViewController.swift */,
-				BBD2D97A2143236F00F59F4E /* RememberData.swift */,
+				BBD2D97A2143236F00F59F4E /* ToRememberData.swift */,
 				BB0AC85C213D9BE5003A2E85 /* Main.storyboard */,
 				BB0AC85F213D9BE9003A2E85 /* Assets.xcassets */,
 				BB0AC861213D9BE9003A2E85 /* LaunchScreen.storyboard */,
@@ -154,7 +154,7 @@
 			files = (
 				BBC6DA5E213E0C7B006FE216 /* ToDoTableViewController.swift in Sources */,
 				BB0AC859213D9BE5003A2E85 /* AppDelegate.swift in Sources */,
-				BBD2D97B2143236F00F59F4E /* RememberData.swift in Sources */,
+				BBD2D97B2143236F00F59F4E /* ToRememberData.swift in Sources */,
 				BBAB32AB213EE23300BC186E /* AddToCalendarViewController.swift in Sources */,
 				BBAB32A3213EAFFC00BC186E /* AddToListViewController.swift in Sources */,
 				BBAB32A9213EDA0700BC186E /* ToRememberTableViewController.swift in Sources */,
