@@ -35,6 +35,7 @@ class AddToCalendarViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func saveBtn(_ sender: UIBarButtonItem) {
+        // Add to do to Calendar
         let store: EKEventStore = EKEventStore()
         
         store.requestAccess(to: .event) { (granted, error) in
@@ -47,6 +48,8 @@ class AddToCalendarViewController: UIViewController, UITextFieldDelegate {
                     event.startDate = self.startDate.date
                     event.endDate = self.endDate.date
                     event.calendar = store.defaultCalendarForNewEvents
+                    // TODO: Add optional alarm functionality
+                    // event.addAlarm(EKAlarm(relativeOffset: ))
                 }
                 
                 do {

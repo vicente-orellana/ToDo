@@ -25,21 +25,10 @@ class ToRememberTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let toRememberObject = defaults.object(forKey: "ToRemember") as? [Data] {
-            thingsToRemember = toRememberObject.compactMap { return thingToRemember(data: $0) }
-        }
-        
-        checkCalendarDayDidChange()
+        // Populate thingsToRemember array with UserDefaults
+        thingsToRemember = getToRememberData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkForNewEntries(notified:)), name: toRememberNotification, object: nil)
-    }
-    
-    func checkCalendarDayDidChange() {
-        thingsToRemember.enumerated().reversed().forEach {
-            if let diff = Calendar.current.dateComponents([.hour], from: $1.date, to: Date()).hour, diff > 24 {
-                thingsToRemember.remove(at: $0)
-            }
-        }
     }
     
     @objc func checkForNewEntries(notified: Notification) {

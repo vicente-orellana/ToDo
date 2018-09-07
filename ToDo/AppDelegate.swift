@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Register default values for saving data
         let defaultValues = ["ToDo" : "", "ToRemember" : ""]
         defaults.register(defaults: defaultValues)
         return true
@@ -36,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         let currentTime = Date()
         let sevenAM = Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: currentTime)!
+        
+        // Initialize array to store things to remember,
+        // and update UserDefaults whenever we change it
         var thingsToRemember: [thingToRemember] = [] {
             didSet {
                 let rememberData = thingsToRemember.map { $0.encode() }
@@ -43,10 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        if let toRememberObject = defaults.object(forKey: "ToRemember") as? [Data] {
-            thingsToRemember = toRememberObject.compactMap { return thingToRemember(data: $0) }
-        }
+        // Populate array with UserDefaults for our to remember list
+        thingsToRemember = getToRememberData()
         
+        // Iterate through our array and check each entry's date added and current time
+        // Send thing to remember to ToDo List if the entry was added at least 7 hours ago
+        // and it's at most 7 AM
         thingsToRemember.enumerated().reversed().forEach {
             if let diff = Calendar.current.dateComponents([.hour], from: $1.date, to: Date()).hour, diff >= 7 && currentTime <= sevenAM {
                 var sendData = [String: String]()

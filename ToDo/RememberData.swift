@@ -32,3 +32,10 @@ extension thingToRemember {
         self.date = date
     }
 }
+
+func getToRememberData() -> [thingToRemember] {
+    if let toRememberObject = UserDefaults.standard.object(forKey: "ToRemember") as? [Data] {
+        return toRememberObject.compactMap { return thingToRemember(data: $0) }
+    }
+    return []
+}
