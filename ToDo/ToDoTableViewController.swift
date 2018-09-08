@@ -45,8 +45,6 @@ class ToDoTableViewController: UITableViewController {
         let myCalendar = Calendar(identifier: .gregorian)
         let weekDay = myCalendar.component(.weekday, from: today)
         switch weekDay {
-        case 0:
-            return "Sat"
         case 1:
             return "Sun"
         case 2:
@@ -59,6 +57,8 @@ class ToDoTableViewController: UITableViewController {
             return "Thu"
         case 6:
             return "Fri"
+        case 7:
+            return "Sat"
         default:
             return "NULL"
         }

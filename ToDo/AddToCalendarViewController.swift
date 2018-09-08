@@ -9,10 +9,14 @@
 import UIKit
 import EventKit
 
-class AddToCalendarViewController: UIViewController, UITextFieldDelegate {
+class AddToCalendarViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var toDoTextField: UITextField!
     @IBOutlet weak var startDate: UIDatePicker!
     @IBOutlet weak var endDate: UIDatePicker!
+    @IBOutlet weak var alertPicker: UIPickerView!
+    @IBOutlet weak var alertToggleBtn: UISwitch!
+    
+    let alertOptions = ["5 minutes before", "10 minutes before", "30 minutes before", "1 hour before"]
     
     var updateClosure: ToDoUpdateClosure?
     var thingToDo: String!
@@ -20,9 +24,29 @@ class AddToCalendarViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         toDoTextField.delegate = self
+        alertPicker.delegate = self
+        alertPicker.dataSource = self
+        
         startDate.setValue(UIColor.white, forKey: "textColor")
         endDate.setValue(UIColor.white, forKey: "textColor")
+        
         toDoTextField.text = thingToDo
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return alertOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return alertOptions[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: alertOptions[row], attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -48,8 +72,28 @@ class AddToCalendarViewController: UIViewController, UITextFieldDelegate {
                     event.startDate = self.startDate.date
                     event.endDate = self.endDate.date
                     event.calendar = store.defaultCalendarForNewEvents
-                    // TODO: Add optional alarm functionality
-                    // event.addAlarm(EKAlarm(relativeOffset: ))
+                    // Alert options (based on selection)
+                    if self.alertToggleBtn.isOn {
+                        let selectedValue = self.alertOptions[self.alertPicker.selectedRow(inComponent: 0)]
+                        var offset: TimeInterval!
+                        switch selectedValue {
+                        case "5 minutes before":
+                            offset = -300
+                            break
+                        case "10 minutes before":
+                            offset = -600
+                            break
+                        case "30 minutes before":
+                            offset = -1800
+                            break
+                        case "1 hour before":
+                            offset = -3600
+                            break
+                        default:
+                            offset = 0
+                        }
+                        event.addAlarm(EKAlarm(relativeOffset: offset))
+                    }
                 }
                 
                 do {
