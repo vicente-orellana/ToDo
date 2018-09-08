@@ -16,7 +16,7 @@ class AddToCalendarViewController: UIViewController, UITextFieldDelegate, UIPick
     @IBOutlet weak var alertPicker: UIPickerView!
     @IBOutlet weak var alertToggleBtn: UISwitch!
     
-    let alertOptions = ["5 minutes before", "10 minutes before", "30 minutes before", "1 hour before"]
+    let alertOptions = ["1 minute before", "5 minutes before", "10 minutes before", "30 minutes before", "1 hour before"]
     
     var updateClosure: ToDoUpdateClosure?
     var thingToDo: String!
@@ -77,18 +77,16 @@ class AddToCalendarViewController: UIViewController, UITextFieldDelegate, UIPick
                         let selectedValue = self.alertOptions[self.alertPicker.selectedRow(inComponent: 0)]
                         var offset: TimeInterval!
                         switch selectedValue {
+                        case "1 minute before":
+                            offset = -60
                         case "5 minutes before":
                             offset = -300
-                            break
                         case "10 minutes before":
                             offset = -600
-                            break
                         case "30 minutes before":
                             offset = -1800
-                            break
                         case "1 hour before":
                             offset = -3600
-                            break
                         default:
                             offset = 0
                         }
