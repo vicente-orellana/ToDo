@@ -50,15 +50,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Populate array with UserDefaults for our to remember list
         thingsToRemember = getToRememberData()
         
-        // Iterate through our array and check each entry's date added and current time
-        // Send thing to remember to ToDo List if the entry was added at least 7 hours ago
-        // and it's at most 7 AM
-        thingsToRemember.enumerated().reversed().forEach {
-            if let diff = Calendar.current.dateComponents([.hour], from: $1.date, to: Date()).hour, diff >= 7 && currentTime <= sevenAM {
-                var sendData = [String: String]()
-                sendData["newEntry"] = $1.thing
-                thingsToRemember.remove(at: $0)
-                NotificationCenter.default.post(name: toRememberNotification, object: nil, userInfo: sendData)
+        // If our array is populated (not empty), then iterate through our array and
+        // check each entry's date added and current time. Send thing to remember to
+        // ToDo List if the entry was added at least 3 hours ago and it's at most 7 AM
+        if !thingsToRemember.isEmpty {
+            thingsToRemember.enumerated().reversed().forEach {
+                if let diff = Calendar.current.dateComponents([.hour], from: $1.date, to: Date()).hour, diff >= 3 && currentTime <= sevenAM {
+                    var sendData = [String: String]()
+                    sendData["newEntry"] = $1.thing
+                    thingsToRemember.remove(at: $0)
+                    NotificationCenter.default.post(name: toRememberNotification, object: nil, userInfo: sendData)
+                }
             }
         }
     }
