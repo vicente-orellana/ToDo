@@ -46,7 +46,7 @@ class AddToCalendarViewController: UIViewController, UITextFieldDelegate, UIPick
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: alertOptions[row], attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        return NSAttributedString(string: alertOptions[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

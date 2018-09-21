@@ -108,6 +108,7 @@
 				TargetAttributes = {
 					BB0AC854213D9BE5003A2E85 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -310,7 +311,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vicenteorellana.ToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -328,7 +329,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vicenteorellana.ToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

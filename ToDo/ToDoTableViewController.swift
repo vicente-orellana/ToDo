@@ -91,6 +91,11 @@ class ToDoTableViewController: UITableViewController {
             self.performSegue(withIdentifier: "addToCalendar", sender: self)
         }
         let postpone = UITableViewRowAction(style: .default, title: "Defer") { (action, indexPath) in
+            var thingsToRemember: [thingToRemember] = getToRememberData()
+            thingsToRemember.append(thingToRemember(thing: self.thingsToDo[indexPath.row], date: Date()))
+            let rememberData = thingsToRemember.map { $0.encode() }
+            self.defaults.set(rememberData, forKey: "ToRemember")
+            
             var sendData = [String: String]()
             sendData["newRemember"] = self.thingsToDo[indexPath.row]
             NotificationCenter.default.post(name: toRememberNotification, object: nil, userInfo: sendData)
